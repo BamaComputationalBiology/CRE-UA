@@ -62,7 +62,6 @@ There are two methods we have used with good success. Phenol chloroform is a sta
 4) Extract genomic DNA was then isolated using a modified phenol-chloroform extraction. 
 5) FILL IN HERE
 
-
 ### 1.2.2 Circulomics Nanobind
 
 Follow the kit protocols.
@@ -87,7 +86,11 @@ Short fragments will be preferentially sequenced but do not provide good informa
 
 ## PART 2: Library Analysis
 
+After sequencing we need to move our data from the gridION to another computing system for assembly and analysis.
+
 ### 2.1 [Porechop](https://github.com/rrwick/Porechop)
+
+We use porechop to discard reads with sequencing adapters.
 
 Basic adapter trimming:
      
@@ -95,7 +98,7 @@ Basic adapter trimming:
 
 #### 2.2 [poretools](https://poretools.readthedocs.io/en/latest/index.html)
 
-Library qc
+Poretools gives us a suite of utilities for assessing the quality, size and distribution of our library.
 
 ## PART 3: Assembly
 
