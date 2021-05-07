@@ -2,8 +2,7 @@
 
 This is the Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 
-We followed the extremely useful CGP-Pipeline found here: 
-[CGP-Pipeline](https://gist.github.com/GDKO/dad1e9e76b01f43effc2)
+We followed the extremely useful [CGP-Pipeline](https://gist.github.com/GDKO/dad1e9e76b01f43effc2)
 
 ## Contents
 
