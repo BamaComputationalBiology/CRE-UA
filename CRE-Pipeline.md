@@ -1,6 +1,4 @@
-## Preface
-
-This is the Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
+Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 
 ## Contents
 
