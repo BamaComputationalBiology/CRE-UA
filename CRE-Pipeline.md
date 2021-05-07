@@ -2,8 +2,6 @@
 
 This is the Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 
-We followed the extremely useful [CGP-Pipeline](https://gist.github.com/GDKO/dad1e9e76b01f43effc2)
-
 ## Contents
 
  - [**1. Wet lab protocols**](#part-1-wetlab)
@@ -79,17 +77,11 @@ Library qc
 
 ## PART 4: Evaluate Assembly
 
-We can evaluate our assemblies using the following metrics.
+### 4.1 QUAST and BUSCO
 
-Calculate the likelihood of the assembly with [CGAL](http://bio.math.berkeley.edu/cgal/)
+[BUSCO](http://busco.ezlab.org/)
 
-Identify the number of core eukaryotic genes present with [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) or [BUSCO](http://busco.ezlab.org/)
 
-Check assembly contiguity with [REAPR](http://www.sanger.ac.uk/science/tools/reapr)
-
-Search for the mitochondrion scaffold(s) in our assembly with BLAST
-
-### 4.1 [QUAST]()
 
 ### 4.2 [Decontamination]()
 
