@@ -4,9 +4,9 @@ This is the Fierst Lab protocol for ONT assembly and annotation of nematode geno
 
 ## Contents
 
- - [**1. Wet lab protocols**](#part-1-wetlab)
+ - [**1. Wet lab protocols**](#part-1-Wet-lab-protocols)
 	- [1.1 Nematode culture](#11-Nematode-culture)
-	- [1.2 High Molecular Weight DNA extraction](#12-HMW-DNA-extraction)
+	- [1.2 High Molecular Weight DNA extraction](#12-High-Molecular-Weight-DNA-extraction)
 	-   [1.2.1 Phenol Chloroform](#121-Phenol-Chloroform)
 	-   [1.2.2 Circulomics Nanobind](#122-Circulomics-Nanobind)
 	- [1.3 Short Read Eliminator (SRE)](#13-Short-Read-Eliminator-(SRE))
@@ -40,7 +40,8 @@ This is the Fierst Lab protocol for ONT assembly and annotation of nematode geno
 
 Assembling a genome sequence starts with the organism. Here, we are targeting nematodes that live in culture in the lab.
 
-### 1.1 Nematode culture (from [Sutton et al. 2021](https://www.biorxiv.org/content/10.1101/2020.05.05.079327v2))
+### 1.1 Nematode culture 
+(from [Sutton et al. 2021](https://www.biorxiv.org/content/10.1101/2020.05.05.079327v2))
 
 1) Nematodes grow on two 100mm NGM (nematode growth medium) plates seeded with E. coli OP50. 
 2) Worms are harvested by washing plates with M9 minimal media into 15mL conical tubes. 
