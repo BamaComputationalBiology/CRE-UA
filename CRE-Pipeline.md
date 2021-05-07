@@ -79,76 +79,47 @@ Library qc
 
 ### 4.1 QUAST and BUSCO
 
+[QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50, 
+
 [BUSCO](http://busco.ezlab.org/)
 
+### 4.2 Decontamination
 
-
-### 4.2 [Decontamination]()
+### 4.2.1 [SIDR]()
 
 ### 4.2.2 [Blobology](http://drl.github.io/blobtools)
 
-#### 4.2.2.1 Search NCBI nt with blast
-
-    blastn \
-    -task megablast \
-    -query [assembly_se.fasta] \
-    -db nt \
-    -culling_limit 2 \
-    -out [assembly_se_nt.blastn] \
-    -outfmt '6 qseqid staxids bitscore std sscinames sskingdoms stitle' \
-    -num_threads 16 \
-    -evalue 1e-25 
-
-#### 4.2.2.2 Make the TAGC plot
-
-Create the BlobDB JSON file
-
-    blobtools create \
-    -i [assembly_se.fasta] \
-    --cas [lib1.cas] --cas [lib2.cas] \ # if clc, or -y velvet if velvet
-    -t [assembly_se_uniref.daa.tagc] \
-    -t [assembly_se_nt.blastn] \
-    --nodes [path_to/nodes.dmb] \       # nodes.dmp (required once)
-    --names [path_to/names.dmb]         # names.dmp (required once)
-
-Generate a table
-
-    blobtools view -i [BlobDB] --hits --rank all > [BlobDB.table]
-
-Create the plot
-
-    blobtools blobplot -i [BlobDB]
-
-We can now inspect the image
-![Blob](http://i.imgur.com/LilPNJI.png)
-
 ## PART 5: Annotation
-
-Rename the assembly scaffolds to something sensible with [assembly.rename.sh](https://github.com/GDKO/CGP-scripts) (requires fastaqual_select.pl in path)
-
-    assembly.rename.sh [assembly] [scaffold_name] # eg nCe.2.0
     
-### 5.1 Mask the repeats with [RepeatModeler](http://www.repeatmasker.org/) and [RepeatMasker](http://www.repeatmasker.org/)
-```
-mkdir RepeatModeler
-cd RepeatModeler
+### 5.1 Characterizing Repeats and Transposable Elements
 
-#Build the database
-BuildDatabase -name [species_name] -engine ncbi ../[renamed_assembly]
+### 5.1.1 [RepeatModeler](http://www.repeatmasker.org/)
 
-# De novo model the repeats
-RepeatModeler -engine ncbi -pa 16 -database [species_name]
+We are using RepeatModeler through [TE-Tools](https://github.com/Dfam-consortium/TETools)
 
-# Extract repeats from Rhabditida
-# queryRepeatDatabase.pl inside RepeatMasker/utils
-queryRepeatDatabase.pl -species rhabditida | grep -v "Species:" > Rhabditida.repeatmasker
+	Launch the container
 
-# Concatenate the 2 files
-cat RM*/consensi.fa.classified Rhabditida.repeatmasker > all.repeats
+	$ ./dfam-tetools.sh
 
-# Mask the assembly
-RepeatMasker -lib all.repeats -pa 16 ../[renamed_assembly]
-```
+	Build the database
+
+	$ BuildDatabase -name [species_name] [genome.fasta]
+	
+	Run RepeatModeler for de novo repeat identification and characterization
+
+	$ RepeatModeler -pa 8 -database [species_name]
+
+	Use the queryRepeatDatabase.pl script inside RepeatMasker/util to extract Rhabditidia repeats
+
+	$ queryRepeatDatabase.pl -species rhabditida | grep -v "Species:" > Rhabditida.repeatmasker
+
+	Combine the files to create a library of de novo and known repeats
+
+	$ cat RM*/consensi.fa.classified Rhabditida.repeatmasker > [species_name].repeats
+
+### 5.1.2 [EDTA](https://github.com/oushujun/EDTA)
+
+
 
 ### 5.2 Annotation Pipeline if we have RNASeq data
 
