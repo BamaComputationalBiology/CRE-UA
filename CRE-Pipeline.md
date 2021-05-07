@@ -38,15 +38,51 @@ This is the Fierst Lab protocol for ONT assembly and annotation of nematode geno
 
 ## PART 1: Wet lab protocols
 
-### 1.1 
+Assembling a genome sequence starts with the organism. Here, we are targeting nematodes that live in culture in the lab.
 
-### 1.2 
+### 1.1 Nematode culture (from [Sutton et al. 2021](https://www.biorxiv.org/content/10.1101/2020.05.05.079327v2))
 
-### 1.3 
+1) Nematodes grow on two 100mm NGM (nematode growth medium) plates seeded with E. coli OP50. 
+2) Worms are harvested by washing plates with M9 minimal media into 15mL conical tubes. 
+3) Samples are rocked on a tabletop rocker for 1 hour before being centrifuged to pellet worms. 
+4) The supernatant is removed and tubes refilled with sterile M9, mixed and pelleted by centrifugation again. 
+5) This process needs to be repeated five times or until the supernatant is clear after centrifugation. 
+6) The pellet needs to be moved to 2mL tubes and frozen at –20°C until extraction. 
 
-### 1.4 
+### 1.2 High Molecular Weight DNA extraction
 
-### 1.5 
+There are two methods we have used with good success. Phenol chloroform is a standard protocol and the Nanobind kit is available from [Circulomics](https://www.circulomics.com/).
+
+### 1.2.1 Phenol Chloroform
+
+1) Worm pellets need to thaw to room-temperature then flash freeze them in liquid nitrogen; repeat three times. 
+2) Place worm pellets in 1.2mL of lysis buffer solution (100mM EDTA, 50mM Tris, and 1%SDS) and 20uL of Proteinase K (100mg/mL).
+3) Place tubes on a 56C heat block for 30 minutes with shaking. 
+4) Extract genomic DNA was then isolated using a modified phenol-chloroform extraction. 
+5) FILL IN HERE
+
+
+### 1.2.2 Circulomics Nanobind
+
+Follow the kit protocols.
+
+After you have HMW DNA:
+1) Measure DNA concentrations and purity with a Qubit and NanoDrop® 1000 spectrophotometer, respectively. The Qubit does high-accuracy quantification and the NanoDrop tells us about the quality of the DNA extract.
+2) Visualize your DNA on a 0.8% agarose gel to verify high-molecular weight gDNA. 
+
+### 1.3 Short Read Eliminator (SRE)
+
+Short fragments will be preferentially sequenced but do not provide good information for assembly. We use the [Short Read Eliminator](https://www.circulomics.com/) for DNA size selection according to manufacturer guidelines.
+
+### 1.4 Library Preparation
+
+1) Prepare DNA libraries using the SQK-LSK109 ligation sequencing kit and load on to R9.4.1 RevD flow cells. 
+2) Modify the recommended protocol from ONT by replacing the first AmpureXP bead clean step with an additional treatment with the Short Read Eliminator Kit. 
+
+### 1.5 ONT Sequencing
+
+1) Load approximately 700ng of gDNA from each library on to a flow cell and sequenced for 48 hours on a GridION X5 platform.
+2) Basecalling is performed by Guppy v.4.0.11 set to high-accuracy mode. 
 
 ## PART 2: Library Analysis
 
@@ -248,3 +284,4 @@ autoAug.pl \
 --optrounds=3 &>augustus.out.txt
 ```
 ## PART 6: Upload data to NCBI
+
