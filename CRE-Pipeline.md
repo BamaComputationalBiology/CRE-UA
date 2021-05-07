@@ -79,9 +79,9 @@ Library qc
 
 ### 4.1 QUAST and BUSCO
 
-[QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50, 
+[QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50 and misassemblies relative to a reference.
 
-[BUSCO](http://busco.ezlab.org/)
+[BUSCO](http://busco.ezlab.org/) searches assembled genome sequences for a set of genes thought to be conserved in single copy in a group of organisms.
 
 ### 4.2 Decontamination
 
@@ -95,7 +95,7 @@ Library qc
 
 ### 5.1.1 [RepeatModeler](http://www.repeatmasker.org/)
 
-We are using RepeatModeler through [TE-Tools](https://github.com/Dfam-consortium/TETools)
+RepeatModeler creates a custom library of repeats found in your assembled genome sequence. We are using RepeatModeler through [TE-Tools](https://github.com/Dfam-consortium/TETools)
 
 	Launch the container
 
