@@ -26,11 +26,11 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
     - [5.1 Characterizing Repeats and Transposable Elements](#51-Characterizing-Repeats-and-Transposable-Elements)
     	- [5.1.1 RepeatModeler](#511-RepeatModeler)
     	- [5.1.2 EDTA](#512-EDTA)
-    - [5.2 Annotation Pipeline if we have RNASeq data](#52-annotation-pipeline-if-we-have-rnaseq-data)
+    - [5.2 Protein-coding gene annotation with BRAKER2](#52-Protein-coding-gene-annotation-with-BRAKER2)
         - [5.2.1 Align RNASeq with STAR](#521-align-rnaseq-with-star)
         - [5.2.2 Run BRAKER](#522-run-braker)
         - [5.2.3 Add UTR info to the GFF3 file](#523-add-utr-info-to-the-gff3-file)
-    - [5.3 Annotation Pipeline if we do not have RNASeq data](#53-annotation-pipeline-if-we-do-not-have-rnaseq-data)
+    - [5.3 Protein-coding gene annotation with MAKER2](#53-Protein-coding-gene-annotation-with-MAKER2)
         - [5.3.1 Create profile with BUSCO or CEGMA ](#531-create-profile-with-busco-or-cegma)
         - [5.3.2 Create GeneMark hmm file](#532-create-genemark-hmm-file)
         - [5.3.3 Run MAKER2](#533-run-maker2)
@@ -193,7 +193,7 @@ Finally, RepeatMasker creates a soft-masked verion of our assembled genome seque
 
 
 
-### 5.2 Annotation Pipeline if we have RNASeq data
+### 5.2 Protein-coding gene annotation with BRAKER2
 
 #### 5.2.1 Align RNASeq with [STAR](https://github.com/alexdobin/STAR)
 
@@ -219,12 +219,7 @@ braker.pl \
 --bam=Aligned.out.bam
 ```
 
-#### 5.2.3 Add UTR info to the GFF3 file
-
-Section under testing
-
-
-### 5.3 Annotation Pipeline if we do not have RNASeq data
+### 5.3 Protein-coding gene annotation with MAKER2
 
 ### 5.3.1 Create profile with BUSCO or CEGMA 
 
@@ -320,4 +315,5 @@ autoAug.pl \
 --optrounds=3 &>augustus.out.txt
 ```
 ## PART 6: Upload data to NCBI
+
 
