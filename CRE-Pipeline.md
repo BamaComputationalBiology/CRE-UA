@@ -199,13 +199,11 @@ Finally, RepeatMasker creates a masked verion of our assembled genome sequence. 
 
 ```
 # Generate genome index
-STAR --runThreadN 8 --runMode genomeGenerate --genomeDir [genome_dir] \
---genomeFastaFiles [assembly.masked]
+STAR --runThreadN 12 --runMode genomeGenerate --genomeDir [species_dir] --genomeSAindexNbases 12 --genomeFastaFiles [species_genome]
 
 # Map the reads
-STAR --runThreadN 8 --genomeDir [genome_dir] --outSAMtype BAM Unsorted \
---twopassMode Basic --readFilesCommand zcat \
---readFilesIn [RNASeq_1.sanfastq.gz] [RNASeq_2.sanfastq.gz] 
+STAR --runThreadN 12 --genomeDir [species_dir] --outSAMtype BAM Unsorted --twopassMode Basic --readFilesCommand zcat \ # if reads are zip-compressed
+--readFilesIn [File_1.fastq.gz] [File_2.fastq.gz] 
 ```
 
 #### 5.2.2 Run [BRAKER](http://exon.gatech.edu/genemark/braker1.html)
