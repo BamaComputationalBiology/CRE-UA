@@ -187,7 +187,7 @@ RepeatModeler creates a custom library of repeats found in your assembled genome
 
 Finally, RepeatMasker creates a masked verion of our assembled genome sequence. There are two versions of masking. Hard-masking means we replace every nucleotide in a repeat region with 'N' and soft-masking means we replace the normally capitalized nucleotides with lower-case nucleotides in repeat regions.
 
-	$ RepeatMasker -lib [species_name].repeats -pa 8 [genome.fasta] 
+	$ RepeatMasker -lib [species_name].repeats -pa 8 -xsmall -nolow [genome.fasta] 
 
 ### 5.1.2 [EDTA](https://github.com/oushujun/EDTA)
 
