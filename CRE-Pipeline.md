@@ -214,7 +214,11 @@ braker.pl \
 --species=[species_name] \
 --cores=8 \
 --genome=[assembly.masked] \
---bam=Aligned.out.bam
+--bam=Aligned.out.bam \
+--prot_seq=[protein.fasta] \
+--prg=gth \
+--GENEMARK_PATH=[GENEMARK_dir] \
+--softmasking
 ```
 
 ### 5.3 Protein-coding gene annotation with MAKER2
