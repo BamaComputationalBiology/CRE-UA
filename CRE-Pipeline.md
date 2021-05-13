@@ -112,8 +112,8 @@ ONT libraries have large numbers of incorrectly called nucleotides, insertions a
 ### 3.2 Assembly software
 
 Canu assembly can be very slow and our group has found Flye to be much faster with similar or improved accuracy
-
-	$ flye
+ 
+	$ flye --nano-corr [sample] --out-dir out_nano --threads 8 --genome-size [genome estimate] 
 
 ### 3.3 Assembly polishing
 
@@ -185,7 +185,7 @@ RepeatModeler creates a custom library of repeats found in your assembled genome
 
 	$ cat RM*/consensi.fa.classified Rhabditida.repeatmasker > [species_name].repeats
 
-Finally, RepeatMasker creates a masked verion of our assembled genome sequence. There are two versions of masking. Hard-masking means we replace every nucleotide in a repeat region with 'N' and soft-masking means we replace the normally capitalized nucleotides with lower-case nucleotides in repeat regions.
+Finally, RepeatMasker creates a masked verion of our assembled genome sequence. There are two versions of masking. Hard-masking means we replace every nucleotide in a repeat region with 'N' and soft-masking means we replace the normally capitalized nucleotides with lower-case nucleotides in repeat regions. Here we soft-mask (-xsmall) and do not mask low complextiy elements (-nolow).
 
 	$ RepeatMasker -lib [species_name].repeats -pa 8 -xsmall -nolow [genome.fasta] 
 
