@@ -232,9 +232,9 @@ braker.pl \
 --prot_seq=[protein.fasta] \
 --prg=gth \
 --GENEMARK_PATH=[GENEMARK_dir] \
---softmasking
---addUTR=on
---useExisting
+--softmasking \
+--addUTR=on \
+--useExisting \
 --gff3
 ```
 
