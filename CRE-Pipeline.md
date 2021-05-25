@@ -29,7 +29,6 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
     - [5.2 Protein-coding gene annotation with BRAKER2](#52-Protein-coding-gene-annotation-with-BRAKER2)
         - [5.2.1 Align RNASeq with STAR](#521-align-rnaseq-with-star)
         - [5.2.2 Run BRAKER](#522-run-braker)
-        - [5.2.3 Add UTR info to the GFF3 file](#523-add-utr-info-to-the-gff3-file)
     - [5.3 Protein-coding gene annotation with MAKER2](#53-Protein-coding-gene-annotation-with-MAKER2)
         - [5.3.1 Create profile with BUSCO or CEGMA ](#531-create-profile-with-busco-or-cegma)
         - [5.3.2 Create GeneMark hmm file](#532-create-genemark-hmm-file)
