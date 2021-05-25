@@ -34,7 +34,8 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
         - [5.3.1 Create profile with BUSCO or CEGMA ](#531-create-profile-with-busco-or-cegma)
         - [5.3.2 Create GeneMark hmm file](#532-create-genemark-hmm-file)
         - [5.3.3 Run MAKER2](#533-run-maker2)
-        - [5.3.4 Run Augustus](#534-run-augustus)
+        - [5.3.4 Run MAKER2 iteratively](#534-run-maker2-iteratively)
+	- [5.3.5 Run EVidenceModeler with the braker2 and MAKER2 output](#535-run-evidencemodeler-with-the-braker2-and-maker2-output)
   - [**6. Upload data to NCBI](#6-Upload-data-to-NCBI)
 
 ## PART 1: Wet lab protocols
