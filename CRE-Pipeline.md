@@ -220,10 +220,29 @@ braker.pl \
 --GENEMARK_PATH=[GENEMARK_dir] \
 --softmasking
 ```
+Run braker2 again to add the UTRs and generate a .gff3 file
+
+```
+braker.pl \
+--workingdir=[output_dir] \
+--species=[species_name] \
+--cores=8 \
+--genome=[assembly.masked] \
+--bam=Aligned.out.bam \
+--prot_seq=[protein.fasta] \
+--prg=gth \
+--GENEMARK_PATH=[GENEMARK_dir] \
+--softmasking
+--addUTR=on
+--useExisting
+--gff3
+```
 
 ### 5.3 Protein-coding gene annotation with MAKER2
 
-### 5.3.1 Create profile with BUSCO or CEGMA 
+We can use the braker2-trained Augustus and GeneMark in our MAKER2 annotations or follow the protocol below for training.
+
+### 5.3.1 
 
 Use BUSCO to create Augustus profile **(new)** or CEGMA to create SNAP profile.
 
@@ -275,47 +294,87 @@ Create the config files
 maker -CTL
 ```
 
-Edit ```maker_opts.ctl``` and the change the following
+Edit ```maker_opts.ctl``` (an example is below)
 ```
-genome=[assembly.masked]
-protein=[swissprot.fasta]
-model_org=                      # Change value to blank
-repeat_protein=                 # Change value to blank
-snaphmm=[Cv.cegmasnap.hmm]      # If step 5.3.1.2
-gmhmm=[genemark.mod]
-augustus_species=[species_name] # If step 5.3.1.1
-est2genome=1
-protein2genome=1
-pred_stats=1
-keep_preds=1
-single_exon=1
+#-----Genome (these are always required)
+genome=/data/Caenorhabditis_genomes/C_remanei/356/RepeatMasker/356_filtered_SIDR.fasta.masked #genome sequence (fasta file or fasta embeded in GFF3 file)
+organism_type=eukaryotic #eukaryotic or prokaryotic. Default is eukaryotic
+
+#-----Re-annotation Using MAKER Derived GFF3
+maker_gff=# MAKER derived GFF3 file
+est_pass=0 #use ESTs in maker_gff: 1 = yes, 0 = no
+altest_pass=0 #use alternate organism ESTs in maker_gff: 1 = yes, 0 = no
+protein_pass=0 #use protein alignments in maker_gff: 1 = yes, 0 = no
+rm_pass=0 #use repeats in maker_gff: 1 = yes, 0 = no
+model_pass=0 #use gene models in maker_gff: 1 = yes, 0 = no
+pred_pass=0 #use ab-initio predictions in maker_gff: 1 = yes, 0 = no
+other_pass=0 #passthrough anyything else in maker_gff: 1 = yes, 0 = no
+
+#-----EST Evidence (for best results provide a file for at least one)
+est=356_Trinity.fasta#set of ESTs or assembled mRNA-seq in fasta format
+altest= /data/PX506/GCA_010183535.1_CRPX506_cds_from_genomic.fna, /data/jlfierst/aciss_2016/MAKER/evidence_files/Caenorhabditis_briggsae.CB4.20.cdna.all.fa, /data/jlfierst/a
+ciss_2016/MAKER/evidence_files/Caenorhabditis_elegans.WBcel235.20.cdna.all.fa #EST/cDNA sequence file in fasta format from an alternate organism
+est_gff= #aligned ESTs or mRNA-seq from an external GFF3 file
+altest_gff= #aligned ESTs from a closly relate species in GFF3 format
+
+#-----Protein Homology Evidence (for best results provide a file for at least one)
+protein= /data/jlfierst/aciss_2016/MAKER/evidence_files/uniprot_sprot.fasta#protein sequence file in fasta format (i.e. from mutiple organisms)
+protein_gff=#aligned protein homology evidence from an external GFF3 file
+
+#-----Repeat Masking (leave values blank to skip repeat masking)
+model_org=#select a model organism for RepBase masking in RepeatMasker
+rmlib= /data/Caenorhabditis_genomes/C_remanei/356/RepeatMasker/356.repeats #provide an organism specific repeat library in fasta format for RepeatMasker
+repeat_protein= #provide a fasta file of transposable element proteins for RepeatRunner
+rm_gff=#pre-identified repeat elements from an external GFF3 file
+prok_rm=0 #forces MAKER to repeatmask prokaryotes (no reason to change this), 1 = yes, 0 = no
+softmask=1 #use soft-masking rather than hard-masking in BLAST (i.e. seg and dust filtering)
+
+#-----Gene Prediction
+snaphmm=/data/Caenorhabditis_genomes/C_remanei/356/Maker/snap/rnd1/rnd1.zff.length50_aed0.5.hmm #SNAP HMM file
+gmhmm= /data/jlfierst/356/braker/GeneMark-ET/gmhmm.mod #GeneMark HMM file
+augustus_species=356 #Augustus gene prediction species model
+fgenesh_par_file= #FGENESH parameter file
+pred_gff= #ab-initio predictions from an external GFF3 file
+model_gff= #annotated gene models from an external GFF3 file (annotation pass-through)
+run_evm=1 #run EvidenceModeler, 1 = yes, 0 = no
+est2genome=1 #infer gene predictions directly from ESTs, 1 = yes, 0 = no
+protein2genome=1 #infer predictions from protein homology, 1 = yes, 0 = no
+trna=0 #find tRNAs with tRNAscan, 1 = yes, 0 = no
+snoscan_rrna= #rRNA file to have Snoscan find snoRNAs
+snoscan_meth= #-O-methylation site fileto have Snoscan find snoRNAs
+unmask=0 #also run ab-initio prediction programs on unmasked sequence, 1 = yes, 0 = no
+allow_overlap= #allowed gene overlap fraction (value from 0 to 1, blank for default)
+
+#-----Other Annotation Feature Types (features MAKER doesn't recognize)
+other_gff= #extra features to pass-through to final MAKER generated GFF3 file
+
+#-----External Application Behavior Options
+alt_peptide=C #amino acid used to replace non-standard amino acids in BLAST databases
+cpus=20 #max number of cpus to use in BLAST and RepeatMasker (not for MPI, leave 1 when using MPI)
+
+#-----MAKER Behavior Options
+max_dna_len=100000 #length for dividing up contigs into chunks (increases/decreases memory usage)
+min_contig=5000 #skip genome contigs below this length (under 10kb are often useless)
 ```
 
 Run MAKER2 and Extract the gff3 fasta files
 ```
-mpiexec -n 16 maker   # No. of threads
+#!/bin/bash
 
-gff3_merge -d [datastore_index.log]
+export PATH="/data/maker/bin:$PATH"
+export AUGUSTUS_CONFIG_PATH="data/jlfierst/anaconda3/config/species:$PATH"
+
+MAKERDIR="356"
+
+maker -base ${MAKERDIR} maker_opts.ctl maker_bopts.ctl maker_exe.ctl -fix_nucleotides
+gff3_merge  -d ${MAKERDIR}.maker.output/${MAKERDIR}_master_datastore_index.log
+fasta_merge -d ${MAKERDIR}.maker.output/${MAKERDIR}_master_datastore_index.log
 ```
 
-#### 5.3.4 Run [Augustus](http://bioinf.uni-greifswald.de/augustus/)
+#### 5.3.4 Run MAKER2 iteratively
 
-Create the training gff for Augustus (```maker2zff``` from MAKER, ```zff2gff3.pl``` from SNAP)
-```
-maker2zff -c 0 -e 0 [maker.gff3] 
+#### 5.3.5 Run EVidenceModeler with the braker2 and MAKER2 output
 
-zff2gff3.pl genome.ann | perl -plne 's/\t(\S+)$/\t\.\t$1/' >augustus.train.gff3
-```
-
-Run Augustus
-```
-autoAug.pl \
---species=[species_name] \
---genome=[assembly.masked] \
---trainingset=augustus.train.gff3 \
---useexisting -v --singleCPU \
---optrounds=3 &>augustus.out.txt
-```
 ## PART 6: Upload data to NCBI
 
 
