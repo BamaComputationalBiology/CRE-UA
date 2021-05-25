@@ -373,6 +373,8 @@ fasta_merge -d ${MAKERDIR}.maker.output/${MAKERDIR}_master_datastore_index.log
 
 #### 5.3.4 Run MAKER2 iteratively
 
+
+
 #### 5.3.5 Run EVidenceModeler with the braker2 and MAKER2 output
 
 ## PART 6: Upload data to NCBI
