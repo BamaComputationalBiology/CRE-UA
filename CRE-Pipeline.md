@@ -35,6 +35,9 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
         - [5.3.3 Run MAKER2](#533-run-maker2)
         - [5.3.4 Run MAKER2 iteratively](#534-run-maker2-iteratively)
 	- [5.3.5 Run EVidenceModeler with the braker2 and MAKER2 output](#535-run-evidencemodeler-with-the-braker2-and-maker2-output)
+   - [5.4 Annotation statistics with AGAT](#Annotation-statistics-with-AGAT)
+   	- [5.4.1 Install AGAT via conda](#541-install-agat-via-conda)
+   	- [5.4.2 Count genes and other features](#542-count-genes-and-other-features)
   - [**6. Upload data to NCBI](#6-Upload-data-to-NCBI)
 
 ## PART 1: Wet lab protocols
@@ -376,6 +379,21 @@ fasta_merge -d ${MAKERDIR}.maker.output/${MAKERDIR}_master_datastore_index.log
 
 
 #### 5.3.5 Run EVidenceModeler with the braker2 and MAKER2 output
+
+### 5.4 Annotation statistics with AGAT
+
+AGAT(https://github.com/NBISweden/AGAT#installation) is a tool for annotation editing and evaluation. We will install via conda and use it to evaluate annotation statistics. AGAT creates conflicts with some other aspects of conda and we will install/activate it into its own environment to manage the conflicts.
+
+#### 5.4.1 Install AGAT via conda(https://anaconda.org/bioconda/agat)
+
+	conda create -n agatenv
+	conda activate agatenv
+	conda install -c bioconda agat
+
+#### 5.4.2 Count genes and other features
+
+	conda activate agatenv
+	agat_sp_statistics.pl --gff {file}.gff3
 
 ## PART 6: Upload data to NCBI
 
