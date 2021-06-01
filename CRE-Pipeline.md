@@ -315,13 +315,12 @@ other_pass=0 #passthrough anyything else in maker_gff: 1 = yes, 0 = no
 
 #-----EST Evidence (for best results provide a file for at least one)
 est=356_Trinity.fasta#set of ESTs or assembled mRNA-seq in fasta format
-altest= /data/PX506/GCA_010183535.1_CRPX506_cds_from_genomic.fna, /data/jlfierst/aciss_2016/MAKER/evidence_files/Caenorhabditis_briggsae.CB4.20.cdna.all.fa, /data/jlfierst/a
-ciss_2016/MAKER/evidence_files/Caenorhabditis_elegans.WBcel235.20.cdna.all.fa #EST/cDNA sequence file in fasta format from an alternate organism
+altest= /data/PX506/GCA_010183535.1_CRPX506_cds_from_genomic.fna, Caenorhabditis_briggsae.CB4.20.cdna.all.fa, Caenorhabditis_elegans.WBcel235.20.cdna.all.fa #EST/cDNA sequence file in fasta format from an alternate organism
 est_gff= #aligned ESTs or mRNA-seq from an external GFF3 file
 altest_gff= #aligned ESTs from a closly relate species in GFF3 format
 
 #-----Protein Homology Evidence (for best results provide a file for at least one)
-protein= /data/jlfierst/aciss_2016/MAKER/evidence_files/uniprot_sprot.fasta#protein sequence file in fasta format (i.e. from mutiple organisms)
+protein=uniprot_sprot.fasta#protein sequence file in fasta format (i.e. from mutiple organisms)
 protein_gff=#aligned protein homology evidence from an external GFF3 file
 
 #-----Repeat Masking (leave values blank to skip repeat masking)
