@@ -109,9 +109,81 @@ Poretools gives us a suite of utilities for assessing the quality, size and dist
 
 ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads, assemble and then polish. If you have high long read coverage (>30x >10kb) you can use NextDenovo/NextPolish; otherwise we use Canu/Flye/Pilon.  
 
-### 3.1 NextDenovo/NextPolish
+### 3.1 NextDenovo/NextPolish(https://github.com/Nextomics/NextDenovo)
 
+Tell NextDenovo where the ONT libraries are
 
+	$ ls {ONT-libraries} > input.fofn
+	
+Edit the run.cfg (configuration) file
+
+	[General]
+	job_type = local # local, slurm, sge, pbs, lsf
+	job_prefix = nextDenovo
+	task = all # all, correct, assemble
+	rewrite = yes # yes/no
+	deltmp = yes 
+	parallel_jobs = 20 # number of tasks used to run in parallel
+	input_type = raw # raw, corrected
+	read_type = ont # clr, ont, hifi
+	input_fofn = input.fofn
+	workdir = {species name}
+
+	[correct_option]
+	read_cutoff = 1k
+	genome_size = 131M # estimated genome size
+	sort_options = -m 20g -t 15
+	minimap2_options_raw = -t 8
+	pa_correction = 3 # number of corrected tasks used to run in parallel, each corrected task requires ~TOTAL_INPUT_BASES/4 bytes of memory usage.
+	correction_options = -p 15
+
+	[assemble_option]
+	minimap2_options_cns = -t 8 
+	nextgraph_options = -a 1
+	
+Assemble with NextDenovo
+
+	$ ./nextDenovo run.cfg
+
+The output will be in the {species name}/03.ctg_graph directory. There are two files, nd.asm.fasta is the assembled genome sequence and nd.asm.fasta.stat gives you some statistics regarding the contiguity and quality of the assembled sequence.
+
+Polishing with NextPolish follows a similar workflow. First, tell NextPolish where the ONT libraries are
+
+	$ ls {ONT libraries} > lgs.fofn
+
+Then tell NextPolish where the Illumina short reads are
+
+	$ ls {Illumina libraries} {Illumina libraries} > sgs.fofn
+
+Edit the run.cfg file for your sequence
+
+	[General]
+	job_type = local
+	job_prefix = nextPolish
+	task = default
+	rewrite = yes
+	rerun = 3
+	parallel_jobs = 2
+	multithread_jobs = 3
+	genome = {species name}/03.ctg_graph/nd.asm.fasta
+	genome_size = auto
+	workdir = {species name}
+	polish_options = -p {multithread_jobs}
+
+	[sgs_option]
+	sgs_fofn = ./sgs.fofn
+	sgs_options = -max_depth 100
+
+	[lgs_option]
+	lgs_fofn = ./lgs.fofn
+	lgs_options = -min_read_len 5k -max_depth 100
+	lgs_minimap2_options = -x map-ont
+
+Your assembled, polished sequence will be at {species name}/genome.nextpolish.fasta
+
+# see https://nextdenovo.readthedocs.io/en/latest/OPTION.html for a detailed introduction about all the parameters
+
+If you have completed this portion with NextDenovo/NextPolish you can skip down to (4) and begin your evaluations.
 
 ### 3.2 Read correction with Canu
 
