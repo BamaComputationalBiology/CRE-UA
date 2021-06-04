@@ -14,9 +14,10 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 	- [2.1 PoreChop](#21-PoreChop)
 	- [2.2 poretools](#22-poretools)
  - [**3. Assembly**](#part-3-assembly)
- - 	- [3.1 Read correction](#31-Read-correction)
- - 	- [3.2 Assembly software](#32-Assembly-software)
- - 	- [3.3 Assembly polishing](#33-Assembly-polishing)
+ - 	- [3.1 NextDenovo/NextPolish](#31-Nextdenovo/nextpolish)
+ - 	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
+ - 	- [3.2 Assembly software](#33-Assembly-software)
+ - 	- [3.3 Assembly polishing](#34-Assembly-polishing)
  - [**4. Evaluate Assembly**](#part-4-evaluate-assembly)
  -  [4.1 QUAST](#41-QUAST)
  -  [4.2 Decontamination](#42-Decontamination)
@@ -106,19 +107,25 @@ Poretools gives us a suite of utilities for assessing the quality, size and dist
 
 ## PART 3: Assembly
 
-### 3.1 Read correction
+ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads, assemble and then polish. If you have high long read coverage (>30x >10kb) you can use NextDenovo/NextPolish; otherwise we use Canu/Flye/Pilon.  
 
-ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads with Canu using the canu-correct module.
+### 3.1 NextDenovo/NextPolish
+
+
+
+### 3.2 Read correction with Canu
+
+Read correction with Canu using the canu-correct module.
 
 	$ canu -correct -p [sample] -d [out_directory_name] -nanopore reads.fastq genomeSize=XXXM
 
-### 3.2 Assembly software
+### 3.3 Assembly software
 
 Canu assembly can be very slow and our group has found Flye to be much faster with similar or improved accuracy
  
 	$ flye --nano-corr [sample] --out-dir out_nano --threads 8 --genome-size [genome estimate] 
 
-### 3.3 Assembly polishing
+### 3.4 Assembly polishing
 
 ONT assemblies have small errors that can be addressed through iterative polishing with Illumina libraries.
 
@@ -146,7 +153,7 @@ ONT assemblies have small errors that can be addressed through iterative polishi
 	
 	java -Xmx300G -jar /data/jmsutton/anaconda3/share/pilon-1.23-0/pilon-1.23.jar --genome ${GENOME} --frags bwa.sort --output r1 --outdir r1
 
-## PART 4: Evaluate Assembly
+## PART 4: Evaluation
 
 ### 4.1 QUAST and BUSCO
 
