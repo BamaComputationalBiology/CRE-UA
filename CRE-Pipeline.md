@@ -229,9 +229,26 @@ ONT assemblies have small errors that can be addressed through iterative polishi
 
 ### 4.1 QUAST and BUSCO
 
-[QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50 and misassemblies relative to a reference.
+[QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50 and misassemblies relative to a reference. If you don't have a reference it will estimate statistics like N50, N90, L50 and L90.
+
+QUAST without a reference
+
+	$ python {quast location}/quast.py -t 12 --plots-format pdf {assembled sequence} -o {output name}
+
+QUAST with a reference
+
+	$ python {quast location}/quast.py -t 12 --plots-format pdf -r {reference genome} {assembled sequence} -o {output name}
 
 [BUSCO](http://busco.ezlab.org/) searches assembled genome sequences for a set of genes thought to be conserved in single copy in a group of organisms.
+
+	#!/bin/bash
+
+	export PATH="/data/jlfierst/anaconda3/bin:$PATH" # replace with your conda bin location
+	export AUGUSTUS_CONFIG_PATH="/data/jlfierst/anaconda3/config/" # replace with your augustus config location
+
+	export BUSCO_CONFIG_FILE="/data/jlfierst/anaconda3/config/config.ini" # replace with your BUSCO config location
+
+	busco -c 12 -m genome -i {assembled sequence} -o {output name} --lineage_dataset nematoda_odb10 # replace the lineage as needed
 
 ### 4.2 Decontamination
 
