@@ -109,7 +109,7 @@ Poretools gives us a suite of utilities for assessing the quality, size and dist
 
 ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads, assemble and then polish. If you have high long read coverage (>30x >10kb) you can use NextDenovo/NextPolish; otherwise we use Canu/Flye/Pilon. It's worth experimenting with different protocols too and evaluating your assembled sequence.
 
-### 3.1 NextDenovo(https://github.com/Nextomics/NextDenovo)
+### 3.1 NextDenovo (https://github.com/Nextomics/NextDenovo)
 
 Tell NextDenovo where the ONT libraries are
 
