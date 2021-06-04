@@ -18,7 +18,7 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
   	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
   	- [3.2 Assembly software](#33-Assembly-software)
   	- [3.3 Assembly polishing](#34-Assembly-polishing)
- - [**4. Evaluate Assembly**](#part-4-evaluate-assembly)
+ - [**4. Evaluation**](#part-4-evaluation)
  -  [4.1 QUAST](#41-QUAST)
  -  [4.2 BUSCO](#42-BUSCO)
  -  [4.3 Decontamination](#43-Decontamination)
