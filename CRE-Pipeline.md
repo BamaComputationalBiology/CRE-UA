@@ -14,15 +14,16 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 	- [2.1 PoreChop](#21-PoreChop)
 	- [2.2 poretools](#22-poretools)
  - [**3. Assembly**](#part-3-assembly)
- - 	- [3.1 NextDenovo](#31-NextDenovo)
- - 	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
- - 	- [3.2 Assembly software](#33-Assembly-software)
- - 	- [3.3 Assembly polishing](#34-Assembly-polishing)
+  	- [3.1 NextDenovo](#31-NextDenovo)
+  	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
+  	- [3.2 Assembly software](#33-Assembly-software)
+  	- [3.3 Assembly polishing](#34-Assembly-polishing)
  - [**4. Evaluate Assembly**](#part-4-evaluate-assembly)
  -  [4.1 QUAST](#41-QUAST)
- -  [4.2 Decontamination](#42-Decontamination)
-    - [4.2.1 SIDR](#SIDR)
-    - [4.2.2 Blobology](#23-Blobology)
+ -  [4.2 BUSCO](#42-BUSCO)
+ -  [4.3 Decontamination](#43-Decontamination)
+    - [4.3.1 SIDR](#SIDR)
+    - [4.3.2 Blobology](#432-Blobology)
  - [**5. Annotation**](#part-5-annotation)
     - [5.1 Characterizing Repeats and Transposable Elements](#51-Characterizing-Repeats-and-Transposable-Elements)
     	- [5.1.1 RepeatModeler](#511-RepeatModeler)
@@ -227,7 +228,7 @@ ONT assemblies have small errors that can be addressed through iterative polishi
 
 ## PART 4: Evaluation
 
-### 4.1 QUAST and BUSCO
+### 4.1 QUAST
 
 [QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50 and misassemblies relative to a reference. If you don't have a reference it will estimate statistics like N50, N90, L50 and L90.
 
@@ -238,6 +239,8 @@ QUAST without a reference
 QUAST with a reference
 
 	$ python {quast location}/quast.py -t 12 --plots-format pdf -r {reference genome} {assembled sequence} -o {output name}
+	
+### 4.2 BUSCO
 
 [BUSCO](http://busco.ezlab.org/) searches assembled genome sequences for a set of genes thought to be conserved in single copy in a group of organisms.
 
@@ -250,11 +253,11 @@ QUAST with a reference
 
 	busco -c 12 -m genome -i {assembled sequence} -o {output name} --lineage_dataset nematoda_odb10 # replace the lineage as needed
 
-### 4.2 Decontamination
+### 4.3 Decontamination
 
-### 4.2.1 [SIDR]()
+### 4.3.1 [SIDR]()
 
-### 4.2.2 [Blobology](http://drl.github.io/blobtools)
+### 4.3.2 [Blobology](http://drl.github.io/blobtools)
 
 ## PART 5: Annotation
     
