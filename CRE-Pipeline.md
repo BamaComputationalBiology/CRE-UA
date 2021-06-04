@@ -14,7 +14,7 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 	- [2.1 PoreChop](#21-PoreChop)
 	- [2.2 poretools](#22-poretools)
  - [**3. Assembly**](#part-3-assembly)
- - 	- [3.1 NextDenovo/NextPolish](#31-Nextdenovo/nextpolish)
+ - 	- [3.1 NextDenovo](#31-NextDenovo)
  - 	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
  - 	- [3.2 Assembly software](#33-Assembly-software)
  - 	- [3.3 Assembly polishing](#34-Assembly-polishing)
@@ -107,9 +107,9 @@ Poretools gives us a suite of utilities for assessing the quality, size and dist
 
 ## PART 3: Assembly
 
-ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads, assemble and then polish. If you have high long read coverage (>30x >10kb) you can use NextDenovo/NextPolish; otherwise we use Canu/Flye/Pilon.  
+ONT libraries have large numbers of incorrectly called nucleotides, insertions and deletions. Our group has found the best protocol is to correct ONT sequence reads, assemble and then polish. If you have high long read coverage (>30x >10kb) you can use NextDenovo/NextPolish; otherwise we use Canu/Flye/Pilon. It's worth experimenting with different protocols too and evaluating your assembled sequence.
 
-### 3.1 NextDenovo/NextPolish(https://github.com/Nextomics/NextDenovo)
+### 3.1 NextDenovo(https://github.com/Nextomics/NextDenovo)
 
 Tell NextDenovo where the ONT libraries are
 
