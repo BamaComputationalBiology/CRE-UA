@@ -182,7 +182,7 @@ Edit the run.cfg file for your sequence
 
 Your assembled, polished sequence will be at {species name}/genome.nextpolish.fasta
 
-# see https://nextdenovo.readthedocs.io/en/latest/OPTION.html for a detailed introduction about all the parameters
+See https://nextdenovo.readthedocs.io/en/latest/OPTION.html for a detailed introduction about all the parameters
 
 If you have completed this portion with NextDenovo/NextPolish you can skip down to (4) and begin your evaluations.
 
