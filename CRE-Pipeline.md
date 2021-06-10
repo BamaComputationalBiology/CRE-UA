@@ -93,6 +93,31 @@ Short fragments will be preferentially sequenced but do not provide good informa
 ## PART 2: Library Analysis
 
 After sequencing we need to move our data from the gridION to another computing system for assembly and analysis.
+We will start to use UAHPC, the central computing server. Below is an example job submission script, we will discuss how the system works.
+
+	#!/bin/bash
+
+	#SBATCH -J #job name
+
+	#SBATCH -p #partition (a group of nodes). We will use main, owners, or highmem
+
+	#SBATCH --qos #This tells what sort of resource allowances you have for a particular partition. We will use main, or jlfierst
+
+	#SBATCH -N #number of nodes (1 node = 1 machine/computer) We typically will only use 1)
+
+	#SBATCH -c #cpus per task. A cpu is a processor and most nodes have numerous cpus. We typically won’t need to use this option because most of our programs don’t need a certain number of cpus allocated for specific tasks.
+
+	#SBATCH -n #number of cpus/cores/threads/processors (these terms are often used interchangeably) required for the job to run. We often use between 1-16. Note that certain combinations of partition/quos will have a maximum number of cpus allowed for use.
+
+	#SBATCH --mem #Amount of memory(RAM) requested per node. You must specify a value and unit (20G(20gigabytes)). Default unit is M(megabyte) We can specifically ask for a certain amount of memory per cpu, but usually don’t need to.
+
+	#SBATCH -o %A.%a.out #STDOUT output
+
+	#SBATCH -e %A.%a.err #STDERR output
+
+	#SBATCH —mail-type #emails your if certain things happen with your job. the type “ALL” is typically used and will inform you when your job begins, ends, fails, has invalid dependencies, times out, or gets requeued for some reason.
+
+	#SBATCH —mail-user #the username and/or email address to send notifications to. 
 
 ### 2.1 [Porechop](https://github.com/rrwick/Porechop)
 
