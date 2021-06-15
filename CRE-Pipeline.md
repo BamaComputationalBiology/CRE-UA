@@ -119,6 +119,10 @@ We will start to use UAHPC, the central computing server. Below is an example jo
 
 	#SBATCH —mail-user #the username and/or email address to send notifications to. 
 
+Logging on from your terminal:
+
+	$ ssh -l username uahpc.ua.edu
+
 ### 2.1 [Porechop](https://github.com/rrwick/Porechop)
 
 We use porechop to discard reads with sequencing adapters.
