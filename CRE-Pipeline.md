@@ -11,8 +11,7 @@ Fierst Lab protocol for ONT assembly and annotation of nematode genomes.
 	- [1.4 Library Preparation](#14-Library-Preparation)
 	- [1.5 ONT Sequencing](#15-ONT-Sequencing)
  - [**2. Library Analysis**](#part-2-library-analysis)
-	- [2.1 PoreChop](#21-PoreChop)
-	- [2.2 poretools](#22-poretools)
+	- [2.1 NanoStat](#21-nanostat)
  - [**3. Assembly**](#part-3-assembly)
   	- [3.1 NextDenovo](#31-NextDenovo)
   	- [3.2 Read correction with Canu](#32-Read-correction-with-canu)
@@ -123,17 +122,9 @@ Logging on from your terminal:
 
 	$ ssh -l username uahpc.ua.edu
 
-### 2.1 [Porechop](https://github.com/rrwick/Porechop)
+### 2.1 [Nanostat]
 
-We use porechop to discard reads with sequencing adapters.
-
-Basic adapter trimming:
-     
-     	$ porechop -i input_reads.fastq.gz -discard-middle -o output_reads.fastq.gz
-
-#### 2.2 [poretools](https://poretools.readthedocs.io/en/latest/index.html)
-
-Poretools gives us a suite of utilities for assessing the quality, size and distribution of our library.
+https://github.com/wdecoster/nanostat
 
 ## PART 3: Assembly
 
