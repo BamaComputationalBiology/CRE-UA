@@ -291,10 +291,8 @@ Hit 'i' for insertion and type the following:
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email} 
 	
-	module load bio/canu/2.1
-	module load java/1.8.0
-	module load bio/bioinfo-gcc
-	module load python/python3/3.6.5
+	use canu
+	use java1.8.0
 
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=256G -nanopore [reads].fastq
 
