@@ -122,6 +122,14 @@ Logging on from your terminal:
 
 	$ ssh -l username uahpc.ua.edu
 
+Change to the /jlf drive, make a directory for your data and change into the directory
+
+	$ cd /jlf
+	
+	$ mkdir {your mybama name}
+
+	$ cd {your my bama name}
+
 UAHPC is a large system with a single log on point (the head node). You will need to write job submission scripts for longer running jobs. For shorter jobs you can request an interactive node
 
 	$ srun --pty -p [partition_name] /bin/bash
