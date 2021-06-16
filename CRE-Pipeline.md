@@ -122,9 +122,25 @@ Logging on from your terminal:
 
 	$ ssh -l username uahpc.ua.edu
 
+UAHPC is a large system with a single log on point (the head node). You will need to write job submission scripts for longer running jobs. For shorter jobs you can request an interactive node
+
+	$ srun --pty -p [partition_name] /bin/bash
+	
+This will move you from the head node to a compute node but you will interact at the command prompt. The partition_name tells the system which resources you need.
+
+UNIX refresher here: 
+
 ### 2.1 [Nanostat]
 
 https://github.com/wdecoster/nanostat
+
+NanoStat measures some statistics about our ONT library. It is fairly quick but we need to get on an interactive node so the head node doesn't get 'bogged down' (i.e., way too slow).
+
+Get on an interactive node
+
+	$ srun --pty -p main /bin/bash
+
+	$ /jlf/jdmillwood/anaconda3/bin/NanoStat --fastq [ONT_reads.fastq]  --name [name_for_output] --outdir [Directory_for_output] --readtype 1D --threads 15
 
 ## PART 3: Assembly
 
@@ -135,8 +151,12 @@ ONT libraries have large numbers of incorrectly called nucleotides, insertions a
 Tell NextDenovo where the ONT libraries are
 
 	$ ls {ONT-libraries} > input.fofn
+
+The output should be a file with a list of libraries, one per line. To view it:
+
+	$ more input.fofn
 	
-Edit the run.cfg (configuration) file
+Create a run.cfg (configuration) file
 
 	[General]
 	job_type = local # local, slurm, sge, pbs, lsf
