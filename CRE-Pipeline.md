@@ -254,17 +254,35 @@ If you have completed this portion with NextDenovo/NextPolish you can skip down 
 
 ### 3.2 Read correction with Canu
 
-Read correction with Canu using the canu-correct module.
+Read correction with Canu using the canu-correct module. Canu assembly can be very slow and our group has found Flye to be much faster with similar or improved accuracy
 
 	$ vi canu_assemble.sh
 
-	canu -correct -p [sample] -d [out_directory_name] -nanopore reads.fastq genomeSize=XXXM
+Hit 'i' for insertion and type the following:
 
-### 3.3 Assembly software
+	#!/bin/bash
+	
+	#SBATCH -J nextDenovo #job name
+	#SBATCH -p highmem
+	#SBATCH --qos main
+	#SBATCH -n 16
+	#SBATCH -o %A.%a.out #STDOUT output
+	#SBATCH -e %A.%a.err #STDERR output
+	#SBATCH —mail-user {your mybama email} 
+	
+	module load bio/canu/2.1
+    	module load java/1.8.0
+	module load bio/bioinfo-gcc
 
-Canu assembly can be very slow and our group has found Flye to be much faster with similar or improved accuracy
- 
-	$ flye --nano-corr [sample] --out-dir out_nano --threads 8 --genome-size [genome estimate] 
+    	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=same_as_in_header -nanopore [reads].fastq
+
+    	/jlf/jdmillwood/Flye/bin/flye --nano-corr [corrected_reads].fasta -o lof_flye_canucorr -t 10 --genome-size 80M
+	
+Exit by hitting the 'esc' button, typing ':wq'.
+
+Submit your job
+
+	$ sbatch < canu_assemble.sh
 
 ### 3.4 Assembly polishing
 
