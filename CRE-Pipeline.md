@@ -128,13 +128,13 @@ UAHPC is a large system with a single log on point (the head node). You will nee
 	
 This will move you from the head node to a compute node but you will interact at the command prompt. The partition_name tells the system which resources you need.
 
-UNIX refresher here: 
+UNIX refresher here: https://github.com/BamaComputationalBiology/IntroToBioinfo/blob/master/1.LifeInTheShell.md
 
 ### 2.1 [Nanostat]
 
 https://github.com/wdecoster/nanostat
 
-NanoStat measures some statistics about our ONT library. It is fairly quick but we need to get on an interactive node so the head node doesn't get 'bogged down' (i.e., way too slow).
+NanoStat measures some statistics about our ONT library. It is fairly quick but we need to get on an interactive node so the head node doesn't get 'bogged down' (way too slow).
 
 Get on an interactive node
 
@@ -156,7 +156,11 @@ The output should be a file with a list of libraries, one per line. To view it:
 
 	$ more input.fofn
 	
-Create a run.cfg (configuration) file
+Create a run.cfg (configuration) file. Use vi to create a new file
+
+	$ vi run.cfg
+	
+Once you are in the file hit 'i' for insertion mode, copy and paste the configurations below:
 
 	[General]
 	job_type = local # local, slurm, sge, pbs, lsf
@@ -167,24 +171,46 @@ Create a run.cfg (configuration) file
 	parallel_jobs = 20 # number of tasks used to run in parallel
 	input_type = raw # raw, corrected
 	read_type = ont # clr, ont, hifi
-	input_fofn = input.fofn
-	workdir = {species name}
+	input_fofn = input.fofn # your file created above
+	workdir = {species name} # output
 
 	[correct_option]
-	read_cutoff = 1k
-	genome_size = 131M # estimated genome size
+	read_cutoff = 1k # Discard anything below 1000bp
+	genome_size = 80M # estimated genome size, we're not sure for Oscheius but we'll use this as a first estimate
 	sort_options = -m 20g -t 15
 	minimap2_options_raw = -t 8
-	pa_correction = 3 # number of corrected tasks used to run in parallel, each corrected task requires ~TOTAL_INPUT_BASES/4 bytes of memory usage.
+	pa_correction = 8 # number of corrected tasks used to run in parallel, each corrected task requires ~TOTAL_INPUT_BASES/4 bytes of memory usage.
 	correction_options = -p 15
 
 	[assemble_option]
 	minimap2_options_cns = -t 8 
 	nextgraph_options = -a 1
 	
-Assemble with NextDenovo
+If you need to edit you can tab around and change your file. To save hit 'esc' (the escape key) for command mode then ':wq' to save and exit.
+	
+Create a job submission script to assemble with NextDenovo
 
-	$ ./nextDenovo run.cfg
+	$ vi assemble.sh
+	
+Remember to hit 'i' for insertion mode and type the following:
+
+	#!/bin/bash
+	
+	#SBATCH -J nextDenovo #job name
+	#SBATCH -p highmem
+	#SBATCH --qos main
+	#SBATCH -n 16
+	#SBATCH -o %A.%a.out #STDOUT output
+	#SBATCH -e %A.%a.err #STDERR output
+	#SBATCH —mail-user {your mybama email} 
+	
+	module load bio/nextdenovo
+	
+ 	nextDenovo run.cfg
+
+To exit hit the 'esc' key then type ':wq'. To submit to the UAHPC queue system type
+
+	$ sbatch < assemble.sh
 
 The output will be in the {species name}/03.ctg_graph directory. There are two files, nd.asm.fasta is the assembled genome sequence and nd.asm.fasta.stat gives you some statistics regarding the contiguity and quality of the assembled sequence.
 
@@ -230,7 +256,9 @@ If you have completed this portion with NextDenovo/NextPolish you can skip down 
 
 Read correction with Canu using the canu-correct module.
 
-	$ canu -correct -p [sample] -d [out_directory_name] -nanopore reads.fastq genomeSize=XXXM
+	$ vi canu_assemble.sh
+
+	canu -correct -p [sample] -d [out_directory_name] -nanopore reads.fastq genomeSize=XXXM
 
 ### 3.3 Assembly software
 
