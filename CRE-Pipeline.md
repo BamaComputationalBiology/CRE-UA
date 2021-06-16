@@ -307,7 +307,10 @@ Hit 'i' for insertion and type the following:
 	#SBATCH --mem-per-cpu 32G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
-	#SBATCH —mail-user {your mybama email} 
+	#SBATCH —mail-user {your mybama email}
+	
+	export DK_ROOT=/share/apps/dotkit
+	. /share/apps/dotkit/bash/.dk_init
 	
 	use canu
 	use java1.8.0
