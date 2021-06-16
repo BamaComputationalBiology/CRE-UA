@@ -136,11 +136,27 @@ https://github.com/wdecoster/nanostat
 
 NanoStat measures some statistics about our ONT library. It is fairly quick but we need to get on an interactive node so the head node doesn't get 'bogged down' (way too slow).
 
-Get on an interactive node
+Use vi to create your job script
 
-	$ srun --pty -p main /bin/bash
+	$ vi nanostat.sh
 
-	$ /jlf/jdmillwood/anaconda3/bin/NanoStat --fastq [ONT_reads.fastq]  --name [name_for_output] --outdir [Directory_for_output] --readtype 1D --threads 15
+Type 'i' for insertion and enter the following:
+
+	#!/bin/bash
+	
+	#SBATCH -J nanoStat #job name
+	#SBATCH -p highmem
+	#SBATCH --qos main
+	#SBATCH -n 16
+	#SBATCH -o %A.%a.out #STDOUT output
+	#SBATCH -e %A.%a.err #STDERR output
+	#SBATCH —mail-user {your mybama email} 
+
+	/jlf/jdmillwood/anaconda3/bin/NanoStat --fastq [ONT_reads.fastq]  --name [name_for_output] --outdir [Directory_for_output] --readtype 1D --threads 16
+
+Hit the 'esc' key, type ':wq' (no quotation marks) to exit and save. To submit your job type
+
+	$ sbatch < nanostat.sh
 
 ## PART 3: Assembly
 
@@ -265,7 +281,8 @@ Hit 'i' for insertion and type the following:
 	#SBATCH -J nextDenovo #job name
 	#SBATCH -p highmem
 	#SBATCH --qos main
-	#SBATCH -n 16
+	#SBATCH -n 8
+	#SBATCH --mem-per-cpu 16G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email} 
@@ -276,7 +293,7 @@ Hit 'i' for insertion and type the following:
 
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=same_as_in_header -nanopore [reads].fastq
 
-    	/jlf/jdmillwood/Flye/bin/flye --nano-corr [corrected_reads].fasta -o lof_flye_canucorr -t 10 --genome-size 80M
+	/jlf/jdmillwood/Flye/bin/flye --nano-corr /home/[mybama_name]/[out_directory]/correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
 	
 Exit by hitting the 'esc' button, typing ':wq'.
 
