@@ -228,6 +228,10 @@ To exit hit the 'esc' key then type ':wq'. To submit to the UAHPC queue system t
 
 	$ sbatch < assemble.sh
 
+To check your job type
+
+	$ squeue -u {mybama name}
+
 The output will be in the {species name}/03.ctg_graph directory. There are two files, nd.asm.fasta is the assembled genome sequence and nd.asm.fasta.stat gives you some statistics regarding the contiguity and quality of the assembled sequence.
 
 Polishing with NextPolish follows a similar workflow. First, tell NextPolish where the ONT libraries are
