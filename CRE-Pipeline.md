@@ -145,8 +145,8 @@ Type 'i' for insertion and enter the following:
 	#!/bin/bash
 	
 	#SBATCH -J nanoStat #job name
-	#SBATCH -p highmem
-	#SBATCH --qos jlf
+	#SBATCH -p long
+	#SBATCH --qos long
 	#SBATCH -n 16
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
@@ -213,8 +213,8 @@ Remember to hit 'i' for insertion mode and type the following:
 	#!/bin/bash
 	
 	#SBATCH -J nextDenovo #job name
-	#SBATCH -p highmem
-	#SBATCH --qos jlf
+	#SBATCH -p long
+	#SBATCH --qos long
 	#SBATCH -n 16
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
@@ -283,8 +283,8 @@ Hit 'i' for insertion and type the following:
 	#!/bin/bash
 	
 	#SBATCH -J nextDenovo #job name
-	#SBATCH -p highmem
-	#SBATCH --qos jlf
+	#SBATCH -p long
+	#SBATCH --qos long
 	#SBATCH -n 8
 	#SBATCH --mem-per-cpu 16G
 	#SBATCH -o %A.%a.out #STDOUT output
