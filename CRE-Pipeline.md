@@ -179,7 +179,7 @@ Create a run.cfg (configuration) file. Use vi to create a new file
 Once you are in the file hit 'i' for insertion mode, copy and paste the configurations below:
 
 	[General]
-	job_type = local # local, slurm, sge, pbs, lsf
+	job_type = slurm # local, slurm, sge, pbs, lsf
 	job_prefix = nextDenovo
 	task = all # all, correct, assemble
 	rewrite = yes # yes/no
@@ -291,7 +291,7 @@ Hit 'i' for insertion and type the following:
 	module load java/1.8.0
 	module load bio/bioinfo-gcc
 
-	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=same_as_in_header -nanopore [reads].fastq
+	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=128G -nanopore [reads].fastq
 
 	/jlf/jdmillwood/Flye/bin/flye --nano-corr /home/[mybama_name]/[out_directory]/correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
 	
