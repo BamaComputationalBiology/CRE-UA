@@ -304,7 +304,7 @@ Hit 'i' for insertion and type the following:
 	#SBATCH -p highmem
 	#SBATCH --qos jlfierst
 	#SBATCH -n 8
-	#SBATCH --mem-per-cpu 32G
+	#SBATCH --mem 348G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email}
@@ -316,7 +316,7 @@ Hit 'i' for insertion and type the following:
 	use java1.8.0
 	use python
 
-	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=256G -nanopore [reads].fastq
+	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=348G -nanopore [reads].fastq
 
 	/jlf/jdmillwood/Flye/bin/flye --nano-corr /home/[mybama_name]/[out_directory]/correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
 	
