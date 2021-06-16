@@ -309,12 +309,9 @@ Hit 'i' for insertion and type the following:
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email}
 	
-	export DK_ROOT=/share/apps/dotkit
-	. /share/apps/dotkit/bash/.dk_init
-	
-	use canu
-	use java1.8.0
-	use python
+	module load canu
+	module load java/1.8.0
+	module load python
 
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=348G -nanopore [reads].fastq
 
