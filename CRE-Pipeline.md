@@ -309,7 +309,7 @@ Hit 'i' for insertion and type the following:
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email}
 	
-	module load canu
+	module load bio/canu/2.1
 	module load java/1.8.0
 	module load python
 
