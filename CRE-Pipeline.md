@@ -172,6 +172,15 @@ ONT libraries have large numbers of incorrectly called nucleotides, insertions a
 
 ### 3.1 NextDenovo (https://github.com/Nextomics/NextDenovo)
 
+You will need drmaa
+
+	$ pip install drmaa
+	$ wget https://github.com/natefoo/slurm-drmaa/releases/download/1.1.0/slurm-drmaa-1.1.0.tar.gz
+	$ tar -vxzf slurm-drmaa-1.1.0.tar.gz
+	$ cd slurm-drmaa-1.1.0
+	$ ./configure && make && make install
+	$ export DRMAA_LIBRARY_PATH=`pwd`/slurm_drmaa/.libs/libdrmaa.so.1
+
 Tell NextDenovo where the ONT libraries are
 
 	$ ls {ONT-libraries} > input.fofn
@@ -196,6 +205,7 @@ Once you are in the file hit 'i' for insertion mode, copy and paste the configur
 	input_type = raw # raw, corrected
 	read_type = ont # clr, ont, hifi
 	input_fofn = input.fofn # your file created above
+	cluster_options = auto
 	workdir = {species name} # output
 
 	[correct_option]
