@@ -179,7 +179,7 @@ You will need drmaa
 	$ tar -vxzf slurm-drmaa-1.1.0.tar.gz
 	$ cd slurm-drmaa-1.1.0
 	$ ./configure && make && make install
-	$ export DRMAA_LIBRARY_PATH=`pwd`/slurm_drmaa/.libs/libdrmaa.so.1
+	$ export DRMAA_LIBRARY_PATH=/home/{mybama name}/slurm-drmaa-1.1.0/slurm_drmaa/.libs/libdrmaa.so.1
 
 Tell NextDenovo where the ONT libraries are
 
@@ -311,6 +311,7 @@ Hit 'i' for insertion and type the following:
 	
 	use canu
 	use java1.8.0
+	use python
 
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=256G -nanopore [reads].fastq
 
