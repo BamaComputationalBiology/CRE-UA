@@ -271,10 +271,10 @@ Hit 'i' for insertion and type the following:
 	#SBATCH —mail-user {your mybama email} 
 	
 	module load bio/canu/2.1
-    	module load java/1.8.0
+	module load java/1.8.0
 	module load bio/bioinfo-gcc
 
-    	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=same_as_in_header -nanopore [reads].fastq
+	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=same_as_in_header -nanopore [reads].fastq
 
     	/jlf/jdmillwood/Flye/bin/flye --nano-corr [corrected_reads].fasta -o lof_flye_canucorr -t 10 --genome-size 80M
 	
