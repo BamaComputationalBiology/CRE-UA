@@ -213,8 +213,8 @@ Remember to hit 'i' for insertion mode and type the following:
 	#!/bin/bash
 	
 	#SBATCH -J nextDenovo #job name
-	#SBATCH -p long
-	#SBATCH --qos long
+	#SBATCH -p highmem
+	#SBATCH --qos jlfierst
 	#SBATCH -n 16
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
@@ -283,8 +283,8 @@ Hit 'i' for insertion and type the following:
 	#!/bin/bash
 	
 	#SBATCH -J nextDenovo #job name
-	#SBATCH -p long
-	#SBATCH --qos long
+	#SBATCH -p highmem
+	#SBATCH --qos jlfierst
 	#SBATCH -n 8
 	#SBATCH --mem-per-cpu 16G
 	#SBATCH -o %A.%a.out #STDOUT output
@@ -294,6 +294,7 @@ Hit 'i' for insertion and type the following:
 	module load bio/canu/2.1
 	module load java/1.8.0
 	module load bio/bioinfo-gcc
+	module load python/python3/3.6.5
 
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=128G -nanopore [reads].fastq
 
