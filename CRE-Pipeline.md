@@ -300,22 +300,23 @@ Hit 'i' for insertion and type the following:
 
 	#!/bin/bash
 	
-	#SBATCH -J nextDenovo #job name
+	#SBATCH -J canu_flye #job name
 	#SBATCH -p highmem
 	#SBATCH --qos jlfierst
 	#SBATCH -n 8
-	#SBATCH --mem 348G
+	#SBATCH --mem=128G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email}
 	
 	module load bio/canu/2.1
 	module load java/1.8.0
+	
+	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false -nanopore [reads].fastq
+        
 	module load bio/bioinfo-gcc
-
-	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false maxMemory=348G -nanopore [reads].fastq
-
-	/jlf/jdmillwood/Flye/bin/flye --nano-corr /home/[mybama_name]/[out_directory]/correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
+	module load python/python3/python3.6.5
+	/jlf/jdmillwood/Flye/bin/flye --nano-corr /jlf/[mybamausername]/[out_directory]/[prefix].correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
 	
 Exit by hitting the 'esc' button, typing ':wq'.
 
