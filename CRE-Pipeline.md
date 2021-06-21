@@ -315,7 +315,7 @@ Hit 'i' for insertion and type the following:
 	canu -correct -p [outfile_name_prefix] -d [out_directory] genomeSize=80M useGrid=false -nanopore [reads].fastq
         
 	module load bio/bioinfo-gcc
-	module load python/python3/python3.6.5
+	module load python/python3/3.6.5
 	/jlf/jdmillwood/Flye/bin/flye --nano-corr /jlf/[mybamausername]/[out_directory]/[prefix].correctedReads.fasta.gz -o flye_try -t 8 --genome-size 80M
 	
 Exit by hitting the 'esc' button, typing ':wq'.
