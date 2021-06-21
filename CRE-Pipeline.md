@@ -290,7 +290,7 @@ See https://nextdenovo.readthedocs.io/en/latest/OPTION.html for a detailed intro
 
 If you have completed this portion with NextDenovo/NextPolish you can skip down to (4) and begin your evaluations.
 
-### 3.2 Read correction with Canu
+### 3.2 Read correction with Canu, Assemble with Flye
 
 Read correction with Canu using the canu-correct module. Canu assembly can be very slow and our group has found Flye to be much faster with similar or improved accuracy
 
