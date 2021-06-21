@@ -196,7 +196,7 @@ Create a run.cfg (configuration) file. Use vi to create a new file
 Once you are in the file hit 'i' for insertion mode, copy and paste the configurations below:
 
 	[General]
-	job_type = slurm # local, slurm, sge, pbs, lsf
+	job_type = local # local, slurm, sge, pbs, lsf
 	job_prefix = nextDenovo
 	task = all # all, correct, assemble
 	rewrite = yes # yes/no
@@ -205,7 +205,6 @@ Once you are in the file hit 'i' for insertion mode, copy and paste the configur
 	input_type = raw # raw, corrected
 	read_type = ont # clr, ont, hifi
 	input_fofn = input.fofn # your file created above
-	cluster_options = auto
 	workdir = {species name} # output
 
 	[correct_option]
@@ -234,6 +233,7 @@ Remember to hit 'i' for insertion mode and type the following:
 	#SBATCH -p highmem
 	#SBATCH --qos jlfierst
 	#SBATCH -n 16
+	#SBATCH --mem 150G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email} 
