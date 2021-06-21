@@ -351,7 +351,7 @@ Hit 'i' for insertion and type the following (edit LINE NAME):
 
 	FORWARD=DF5000_S191_R1_001.fastq.gz, DF5018_S190_R1_001.fastq.gz, OR PB127_S189_R1_001.fastq.gz 
 	REVERSE=DF5000_S191_R2_001.fastq.gz, DF5018_S190_R2_001.fastq.gz, OR PB127_S189_R2_001.fastq.gz
-	
+	LINE_NAME=[insert your line]
 
 	## ROUND 1 ##
 	GENOME=./flye_try/assembly.fasta 
@@ -366,11 +366,11 @@ Hit 'i' for insertion and type the following (edit LINE NAME):
 	samtools index ./pilon_out/bwa.sort
 
 	#Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/[LINE NAME]_pilon1 
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/${LINE NAME}_pilon1 
 
 
 	## ROUND 2 ##
-	GENOME=./fpilon_out/[LINE NAME]_pilon1.fasta 
+	GENOME=./fpilon_out/${LINE NAME}_pilon1.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
@@ -382,11 +382,11 @@ Hit 'i' for insertion and type the following (edit LINE NAME):
 	samtools index ./pilon_out/bwa.sort
 
 	#Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/[LINE NAME]_pilon2
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/${LINE NAME}_pilon2
 
 
 	## ROUND 3 ##
-	GENOME=./fpilon_out/[LINE NAME]_pilon2.fasta 
+	GENOME=./fpilon_out/${LINE NAME}_pilon2.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
@@ -398,11 +398,11 @@ Hit 'i' for insertion and type the following (edit LINE NAME):
 	samtools index ./pilon_out/bwa.sort
 
 	#Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/[LINE NAME]_pilon3
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/${LINE NAME}_pilon3
 
 
 	## ROUND 3 ##
-	GENOME=./fpilon_out/[LINE NAME]_pilon3.fasta 
+	GENOME=./fpilon_out/${LINE NAME}_pilon3.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
@@ -414,7 +414,7 @@ Hit 'i' for insertion and type the following (edit LINE NAME):
 	samtools index ./pilon_out/bwa.sort
 
 	#Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/[LINE NAME]_pilon4
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags bwa.sort --output ./pilon_out/${LINE NAME}_pilon4
 
 Exit by hitting the 'esc' button, typing ':wq'.
 
