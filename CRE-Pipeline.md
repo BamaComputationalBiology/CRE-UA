@@ -155,7 +155,7 @@ Type 'i' for insertion and enter the following:
 	#SBATCH -J nanoStat #job name
 	#SBATCH -p long
 	#SBATCH --qos long
-	#SBATCH -n 16
+	#SBATCH -n 8
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
 	#SBATCH —mail-user {your mybama email} 
@@ -201,7 +201,7 @@ Once you are in the file hit 'i' for insertion mode, copy and paste the configur
 	task = all # all, correct, assemble
 	rewrite = yes # yes/no
 	deltmp = yes 
-	parallel_jobs = 20 # number of tasks used to run in parallel
+	parallel_jobs = 8 # number of tasks used to run in parallel
 	input_type = raw # raw, corrected
 	read_type = ont # clr, ont, hifi
 	input_fofn = input.fofn # your file created above
@@ -232,7 +232,7 @@ Remember to hit 'i' for insertion mode and type the following:
 	#SBATCH -J nextDenovo #job name
 	#SBATCH -p highmem
 	#SBATCH --qos jlfierst
-	#SBATCH -n 16
+	#SBATCH -n 8
 	#SBATCH --mem 150G
 	#SBATCH -o %A.%a.out #STDOUT output
 	#SBATCH -e %A.%a.err #STDERR output
