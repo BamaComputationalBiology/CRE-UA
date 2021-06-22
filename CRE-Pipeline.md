@@ -373,7 +373,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module unload bio/bioinfo-java
 	
 	## ROUND 2 ##
-	GENOME=./fpilon_out/${LINE_NAME}_pilon1.fasta 
+	GENOME=./pilon_out/${LINE_NAME}_pilon1.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
@@ -392,7 +392,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module unload bio/bioinfo-java
 
 	## ROUND 3 ##
-	GENOME=./fpilon_out/${LINE_NAME}_pilon2.fasta 
+	GENOME=./pilon_out/${LINE_NAME}_pilon2.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
@@ -411,8 +411,8 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module unload bio/bioinfo-java
 
 
-	## ROUND 3 ##
-	GENOME=./fpilon_out/${LINE_NAME}_pilon3.fasta 
+	## ROUND 4 ##
+	GENOME=./pilon_out/${LINE_NAME}_pilon3.fasta 
 	#index genome 
 	bwa index ${GENOME}
 	#align reads
