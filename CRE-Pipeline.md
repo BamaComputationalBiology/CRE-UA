@@ -447,11 +447,9 @@ Hit 'i' for insertion and type the following (edit the locations with your line 
 QUAST without a reference
 
 	#!/bin/bash
-	#SBATCH -n 1
+	#SBATCH -n 4
 	#SBATCH -p highmem
 	#SBATCH --qos jlfierst
-	#SBATCH -N 1
-	#SBATCH -c 4
 	#SBATCH --job-name=quast
 	#SBATCH --mem=100G
 
