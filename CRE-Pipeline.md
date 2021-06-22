@@ -444,7 +444,19 @@ Submit your job
 
 QUAST without a reference
 
-	$ python {quast location}/quast.py -t 12 --plots-format pdf {assembled sequence} -o {output name}
+	#!/bin/bash
+	#SBATCH -n 1
+	#SBATCH -p highmem
+	#SBATCH --qos jlfierst
+	#SBATCH -N 1
+	#SBATCH -c 4
+	#SBATCH --job-name=quast
+	#SBATCH --mem=100G
+
+	module load bio/quast/5.0
+
+	#quast.py -t 8 --eukaryote --plots-format pdf ./pilon_out/PB127_pilon4.fasta -o ./PB127_quast/
+	quast.py -t 8 --eukaryote --plots-format pdf ./pilon_out/DF5018_pilon4.fasta -o ./DF5018_quast/
 
 QUAST with a reference
 
