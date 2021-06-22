@@ -330,7 +330,7 @@ ONT assemblies have small errors that can be addressed through iterative polishi
 Copy illumina data from /jlf/CRE_UA/raw_reads/illumina/ if you haven't already
 
 	$ vi pilon.sh
-Hit 'i' for insertion and type the following (edit LINE NAME):
+Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, and GENOME):
 
 
 	#!/bin/bash
