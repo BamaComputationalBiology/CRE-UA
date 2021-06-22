@@ -368,7 +368,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module load java/1.8.0
 	module load bio/bioinfo-java
 	##Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./	pilon_out/${LINE_NAME}_pilon1
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./pilon_out/${LINE_NAME}_pilon1
 	module unload java/1.8.0
 	module unload bio/bioinfo-java
 	
@@ -387,7 +387,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module load java/1.8.0
 	module load bio/bioinfo-java
 	##Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./	pilon_out/${LINE_NAME}_pilon2
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./pilon_out/${LINE_NAME}_pilon2
 	module unload java/1.8.0
 	module unload bio/bioinfo-java
 
@@ -406,7 +406,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module load java/1.8.0
 	module load bio/bioinfo-java
 	##Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./	pilon_out/${LINE_NAME}_pilon3
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./pilon_out/${LINE_NAME}_pilon3
 	module unload java/1.8.0
 	module unload bio/bioinfo-java
 
@@ -426,7 +426,7 @@ Hit 'i' for insertion and type the following (edit FORWARD, REVERSE, LINE NAME, 
 	module load java/1.8.0
 	module load bio/bioinfo-java
 	##Pilon it 
-	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./	pilon_out/${LINE_NAME}_pilon4
+	java -Xmx12G -jar /share/apps/bioinfoJava/pilon-1.22.jar --genome ${GENOME} --frags ./pilon_out/bwa.sort --output ./:pilon_out/${LINE_NAME}_pilon4
 	
 	
 Exit by hitting the 'esc' button, typing ':wq'.
