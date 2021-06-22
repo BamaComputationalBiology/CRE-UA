@@ -442,6 +442,8 @@ Submit your job
 
 [QUAST](http://quast.sourceforge.net/quast.html): Quality Assessment Tool for Genome Assemblies. QUAST can be used to evaluate genome statistics like N50 and misassemblies relative to a reference. If you don't have a reference it will estimate statistics like N50, N90, L50 and L90.
 
+$ vi quast.sh
+Hit 'i' for insertion and type the following (edit the locations with your line name):
 QUAST without a reference
 
 	#!/bin/bash
@@ -458,6 +460,15 @@ QUAST without a reference
 	#quast.py -t 4 --eukaryote --plots-format pdf ./pilon_out/PB127_pilon4.fasta -o ./PB127_quast/
 	quast.py -t 4 --eukaryote --plots-format pdf ./pilon_out/DF5018_pilon4.fasta -o ./DF5018_quast/
 
+
+	
+Exit by hitting the 'esc' button, typing ':wq'.
+
+Submit your job
+
+	$ sbatch < quast.sh
+	
+	
 QUAST with a reference
 
 	$ python {quast location}/quast.py -t 12 --plots-format pdf -r {reference genome} {assembled sequence} -o {output name}
