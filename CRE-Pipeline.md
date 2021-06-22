@@ -455,8 +455,8 @@ QUAST without a reference
 
 	module load bio/quast/5.0
 
-	#quast.py -t 8 --eukaryote --plots-format pdf ./pilon_out/PB127_pilon4.fasta -o ./PB127_quast/
-	quast.py -t 8 --eukaryote --plots-format pdf ./pilon_out/DF5018_pilon4.fasta -o ./DF5018_quast/
+	#quast.py -t 4 --eukaryote --plots-format pdf ./pilon_out/PB127_pilon4.fasta -o ./PB127_quast/
+	quast.py -t 4 --eukaryote --plots-format pdf ./pilon_out/DF5018_pilon4.fasta -o ./DF5018_quast/
 
 QUAST with a reference
 
