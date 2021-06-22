@@ -566,23 +566,26 @@ braker.pl \
 --prg=gth \
 --GENEMARK_PATH=[GENEMARK_dir] \
 --softmasking
+
+gtf2gff.pl < braker.gtf --gff3 --out=braker.gff3
 ```
-Run braker2 again to add the UTRs and generate a .gff3 file
+
+After braker2 is finished we will create protein and fasta files from the native .gtf output. We can align the protein and/or mRNA sequences to the NCBI BLAST databases to check the validity of our annotations.
 
 ```
-braker.pl \
---workingdir=[output_dir] \
---species=[species_name] \
---cores=8 \
---genome=[assembly.masked] \
---bam=Aligned.out.bam \
---prot_seq=[protein.fasta] \
---prg=gth \
---GENEMARK_PATH=[GENEMARK_dir] \
---softmasking \
---addUTR=on \
---useExisting \
---gff3
+#!/bin/bash
+
+
+DIR="[BRAKER2 .gtf location]"
+
+conda activate agatenv
+
+agat_sp_extract_sequences.pl -f ${DIR}_filtered.fasta --mrna -g braker.gff3 -o braker.mRNA.fasta
+agat_sp_extract_sequences.pl -f ${DIR}_filtered.fasta -p -g braker.gff3 -o braker.protein.fasta
+
+tblastn -db nt -query braker.protein.fasta \
+-outfmt '6 qseqid qlen staxids bitscore std sscinames sskingdoms stitle' \
+-num_threads 4 -evalue 0.01 -max_target_seqs 2 -out blast.out
 ```
 
 ### 5.3 Protein-coding gene annotation with MAKER2
