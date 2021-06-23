@@ -475,14 +475,29 @@ QUAST with a reference
 
 [BUSCO](http://busco.ezlab.org/) searches assembled genome sequences for a set of genes thought to be conserved in single copy in a group of organisms.
 
+First step is to copy the augustus config directory to your directory 
+
+ 	cp -r /share/apps/augustus/augustus-3.3.2/config/ /jlf/USERNAME/augustus_config/
+	
+	
+$ vi busco.sh
+Hit 'i' for insertion and type the following (edit the locations with your line name):
+
+		
+
 	#!/bin/bash
+	#SBATCH -n 4
+	#SBATCH -p highmem
+	#SBATCH --qos jlfierst
+	#SBATCH --job-name=busco
+	#SBATCH --mem=100G
 
-	export PATH="/data/jlfierst/anaconda3/bin:$PATH" # replace with your conda bin location
-	export AUGUSTUS_CONFIG_PATH="/data/jlfierst/anaconda3/config/" # replace with your augustus config location
 
-	export BUSCO_CONFIG_FILE="/data/jlfierst/anaconda3/config/config.ini" # replace with your BUSCO config location
+	module load bio/busco
+	export AUGUSTUS_CONFIG_PATH="/jlf/USERNAME/augustus_config/" # replace username
 
-	busco -c 12 -m genome -i {assembled sequence} -o {output name} --lineage_dataset nematoda_odb10 # replace the lineage as needed
+	busco -c 4 -m genome -i [PATH_To_POLISHED_GENOME] -o busco_[LINE] --lineage_dataset nematoda_odb10 --augustus_species caenorhabditis
+
 
 ### 4.3 Decontamination
 
