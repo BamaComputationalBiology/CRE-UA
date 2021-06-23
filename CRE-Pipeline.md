@@ -506,6 +506,28 @@ Hit 'i' for insertion and type the following (edit the locations with your line 
 
 ### 4.3 Decontamination
 
+Blast
+vi blast.sh
+
+Hit 'i' for insertion and type the following:
+
+	#!/bin/bash
+	#SBATCH -J BLAST
+	#SBATCH --qos jlfierst
+	#SBATCH -p highmem
+	#SBATCH -n 4
+	#SBATCH -o %J.out
+	#SBATCH -e %J.err
+
+
+	module load compilers/gcc/5.4.0
+	module load bio/blast/2.9.0
+	echo $BLASTDB ## we still need to fix this part 
+
+	blastn  -task megablast -query [PATH_TO_POLISHED_GENOME] -db nt -outfmt '6 qseqid staxids' -culling_limit 5 -evalue 1e-25 -out [LINE].blast.out
+
+
+
 ### 4.3.1 [SIDR]()
 
 ### 4.3.2 [Blobology](http://drl.github.io/blobtools)
