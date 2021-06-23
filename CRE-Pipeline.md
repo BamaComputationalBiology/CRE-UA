@@ -477,8 +477,11 @@ QUAST with a reference
 
 First step is to copy the augustus config directory to your directory 
 
+Canu-flye:
  	cp -r /share/apps/augustus/augustus-3.3.2/config/ /jlf/USERNAME/augustus_config/
-	
+Nextdenovo:
+	cp -r /share/apps/augustus/augustus-3.3.2/config/ /home/USERNAME/augustus_config/
+
 	
 $ vi busco.sh
 Hit 'i' for insertion and type the following (edit the locations with your line name):
