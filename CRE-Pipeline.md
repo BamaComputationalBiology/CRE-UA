@@ -522,7 +522,8 @@ Hit 'i' for insertion and type the following:
 
 	module load compilers/gcc/5.4.0
 	module load bio/blast/2.9.0
-	echo $BLASTDB ## we still need to fix this part 
+	BLASTDB=/jlf/newblastdb
+	echo $BLASTDB 
 
 	blastn  -task megablast -query [PATH_TO_POLISHED_GENOME] -db nt -outfmt '6 qseqid staxids' -culling_limit 5 -evalue 1e-25 -out [LINE].blast.out
 
