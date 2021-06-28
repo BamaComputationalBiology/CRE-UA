@@ -601,7 +601,7 @@ RepeatModeler creates a custom library of repeats found in your assembled genome
 
 	$ RepeatModeler -pa 8 -database [species_name]
 
-	Use the queryRepeatDatabase.pl script inside RepeatMasker/util to extract Rhabditidia repeats
+	Use the queryRepeatDatabase.pl script inside RepeatMasker/util to extract Rhabditida repeats
 
 	$ queryRepeatDatabase.pl -species rhabditida | grep -v "Species:" > Rhabditida.repeatmasker
 
@@ -609,7 +609,7 @@ RepeatModeler creates a custom library of repeats found in your assembled genome
 
 	$ cat RM*/consensi.fa.classified Rhabditida.repeatmasker > [species_name].repeats
 
-Finally, RepeatMasker creates a masked verion of our assembled genome sequence. There are two versions of masking. Hard-masking means we replace every nucleotide in a repeat region with 'N' and soft-masking means we replace the normally capitalized nucleotides with lower-case nucleotides in repeat regions. Here we soft-mask (-xsmall) and do not mask low complextiy elements (-nolow).
+Finally, RepeatMasker creates a masked version of our assembled genome sequence. There are two versions of masking. Hard-masking means we replace every nucleotide in a repeat region with 'N' and soft-masking means we replace the normally capitalized nucleotides with lower-case nucleotides in repeat regions. Here we soft-mask (-xsmall) and do not mask low complexity elements (-nolow).
 
 	$ RepeatMasker -lib [species_name].repeats -pa 8 -xsmall -nolow [genome.fasta] 
 
