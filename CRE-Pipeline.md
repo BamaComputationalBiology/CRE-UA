@@ -818,6 +818,21 @@ AGAT(https://github.com/NBISweden/AGAT#installation) is a tool for annotation ed
 	conda activate agatenv
 	agat_sp_statistics.pl --gff {file}.gff3
 
+### 5.5 Create pseudo-chromosomes with Ragtag
+
+Caenorhabditis have highly conserved chromosome structure and we expect that large-scale rearrangements have not occurred between closely related strains. This is an assumption and it may not be true but we will operate under this for now. If we assume this we can use RagTag (https://github.com/malonge/RagTag) to scaffold our fragmented assembly based on a chromosome-scale assembly for a close relative, C. remanei PX506 (https://www.ncbi.nlm.nih.gov/genome/253?genome_assembly_id=771236).
+
+RagTag is very fast, below is a script that can align our fragmented assembly to the chromosome-scale PX506 and create a new set of coordinates for our annotated genes.
+
+	#!/bin/bash
+	
+	GENOME=534
+
+	ragtag.py scaffold GCA_010183535.1_CRPX506_genomic.fna {GENOME}.fasta -t 8
+
+	ragtag.py updategff braker.gff3 ./ragtag_output/ragtag.scaffold.agp > ragtag.{GENOME}.gff3
+
+
 ## PART 6: Upload data to NCBI
 
 
